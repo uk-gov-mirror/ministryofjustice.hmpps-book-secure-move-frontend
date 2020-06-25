@@ -231,7 +231,8 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run git:checkbranch && lint-staged"
+      "pre-commit": "npm run git:checkbranch && lint-staged",
+      "pre-push": "ncu"
     }
   },
   "lint-staged": {
