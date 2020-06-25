@@ -207,8 +207,10 @@
     "test-e2e:ci": "npm run test-e2e:chrome -- --color --reporter spec,xunit:reports/testcafe/results-chrome.xml",
     "test-e2e:local": "E2E_BASE_URL='' npm run test-e2e:chrome -- --debug-on-fail",
     "test-e2e:local:api": "E2E_BASE_URL='' node test/e2e/run-without-document-tests.js",
-    "update": "ncu -u",
-    "update:check": "ncu -- --error-level 2",
+    "update": "ncu -u -x @ministryofjustice/frontend,govuk-frontend --error-level 2 && echo 'Non-frontend dependencies up-to-date' || npm install",
+    "update:check": "ncu --error-level 2",
+    "update:govuk:frontend": "ncu -f govuk-frontend",
+    "update:moj:frontend": "ncu -f @ministryofjustice/frontend",
     "watch:js:client": "webpack --watch --progress",
     "watch:js:server": "nodemon $NODE_DEBUG_OPTION --inspect",
     "watch:test": "npm test -- --reporter=min --watch"
