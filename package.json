@@ -209,6 +209,7 @@
     "test-e2e:local:api": "E2E_BASE_URL='' node test/e2e/run-without-document-tests.js",
     "update": "ncu -u -x @ministryofjustice/frontend,govuk-frontend --error-level 2 && echo 'Non-frontend dependencies up-to-date' || npm install",
     "update:check": "ncu --error-level 2",
+    "update:check:package-lock": "git diff --cached --name-status | grep package-lock.json && ncu || echo ''",
     "update:govuk:frontend": "ncu -u -f govuk-frontend --error-level 2 && echo 'govuk-frontend up-to-date' || npm install",
     "update:moj:frontend": "ncu -u -f @ministryofjustice/frontend --error-level 2 && echo '@ministryofjustice/frontend up-to-date' || npm install",
     "watch:js:client": "webpack --watch --progress",
@@ -233,7 +234,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run git:checkbranch && lint-staged",
+      "pre-commit": "npm run git:checkbranch && npm run update:check:package-lock && lint-staged",
       "pre-push": "ncu"
     }
   },
