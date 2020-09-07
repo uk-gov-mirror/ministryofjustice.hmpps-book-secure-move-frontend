@@ -5,7 +5,16 @@ const componentService = require('../services/component')
 
 function frameworkFieldToSummaryListRow(stepUrl) {
   return field => {
-    const { description, id, response, question, descendants, itemName } = field
+    console.log(field)
+    const {
+      alerts,
+      description,
+      id,
+      response,
+      question,
+      descendants,
+      itemName,
+    } = field
     const headerText = description || question
 
     if (response.value_type === 'collection::add_multiple_items') {
@@ -43,6 +52,7 @@ function frameworkFieldToSummaryListRow(stepUrl) {
     }
 
     const responseHtml = componentService.getComponent('appFrameworkResponse', {
+      alerts,
       value: isEmpty(response.value) ? undefined : response.value,
       valueType: response.value_type,
       responded: response.responded === true,

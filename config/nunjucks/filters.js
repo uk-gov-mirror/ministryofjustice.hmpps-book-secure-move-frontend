@@ -5,6 +5,7 @@ const {
   isTomorrow,
   isYesterday,
   differenceInYears,
+  formatDistanceToNow,
   parseISO,
   isValid: isValidDate,
   isSameMonth,
@@ -246,6 +247,16 @@ function calculateAge(value) {
   return differenceInYears(new Date(), parsedDate)
 }
 
+function timeAgo(value) {
+  const parsedDate = parseISO(value)
+
+  if (!isValidDate(parsedDate)) {
+    return value
+  }
+
+  return formatDistanceToNow(parsedDate)
+}
+
 /**
  * Formats a time
  *
@@ -322,4 +333,5 @@ module.exports = {
   pluralize,
   oxfordJoin,
   filesize,
+  timeAgo,
 }

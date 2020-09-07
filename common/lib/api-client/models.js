@@ -67,6 +67,7 @@ module.exports = {
         'profile.person_escort_record.responses',
         'profile.person_escort_record.responses.question',
         'profile.person_escort_record.responses.question.descendants.**',
+        'profile.person_escort_record.responses.question.last_response',
         'profile.person_escort_record.flags',
         'profile.person',
         'profile.person.ethnicity',
@@ -390,6 +391,8 @@ module.exports = {
     fields: {
       status: '',
       confirmed_at: '',
+      created_at: '',
+      updated_at: '',
       version: '',
       profile: {
         jsonApi: 'hasOne',
@@ -455,6 +458,10 @@ module.exports = {
       descendants: {
         jsonApi: 'hasMany',
         type: 'framework_questions',
+      },
+      last_response: {
+        jsonApi: 'hasOne',
+        type: 'framework_responses',
       },
     },
   },
