@@ -21,7 +21,7 @@
   }
 }
 
-.govuk-hint * {
+.govuk-hint > p {
   color: $govuk-secondary-text-colour;
 }
 
@@ -91,5 +91,22 @@
     @include govuk-media-query($from: mobile) {
       width: 70%;
     }
+  }
+}
+
+.govuk-form-group--message {
+  padding-left: govuk-spacing(3);
+  border-left: 5px solid govuk-colour("blue");
+
+  .govuk-prefill-message {
+    @include govuk-font($size: 19, $weight: bold);
+    margin-top: govuk-spacing(3);
+    margin-bottom: govuk-spacing(3);
+    display: block;
+    color: govuk-colour("blue");
+  }
+
+  .govuk-prefill-message--black {
+    color: govuk-colour("black");
   }
 }

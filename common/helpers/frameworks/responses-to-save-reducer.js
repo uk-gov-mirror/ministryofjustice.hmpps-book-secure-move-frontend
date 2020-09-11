@@ -13,7 +13,7 @@ function responsesToSaveReducer(values = {}) {
     if (responseType === 'object::followup_comment') {
       responseValue = pickBy({
         option: value,
-        details: values[`${fieldName}--${kebabCase(value)}`],
+        details: values[`${fieldName}--${kebabCase(value)}`] || 'n/a',
       })
     }
 

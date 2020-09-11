@@ -2,6 +2,23 @@ const { filter } = require('lodash')
 
 const FormWizardController = require('../../../common/controllers/form-wizard')
 const presenters = require('../../../common/presenters')
+const filters = require('../../../config/nunjucks/filters')
+
+const mockAlerts = require('./mock-alerts')
+
+function appendAlerts(fields, key, alerts, createdDate) {
+  if (!fields[key]) {
+    return
+  }
+
+  fields[key].alerts = `
+    <h4 class="govuk-heading-s govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-margin-bottom-2">
+      Active NOMIS information included
+    </h4>
+
+    ${alerts}
+  `
+}
 
 class FrameworkSectionController extends FormWizardController {
   middlewareLocals() {
@@ -9,6 +26,24 @@ class FrameworkSectionController extends FormWizardController {
     this.use(this.setSectionSummary)
     this.use(this.setMoveId)
     this.use(this.setEditableStatus)
+  }
+
+  middlewareSetup() {
+    this.use(this.setNomisAlerts)
+    super.middlewareSetup()
+  }
+
+  setNomisAlerts(req, res, next) {
+    mockAlerts.forEach(alert => {
+      appendAlerts(
+        req.form.options.allFields,
+        alert.key,
+        alert.html,
+        req.personEscortRecord.created_at
+      )
+    })
+
+    next()
   }
 
   setMoveId(req, res, next) {

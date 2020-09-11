@@ -1,7 +1,7 @@
 {% if params.value and params.valueType %}
   {% if params.valueType === 'object::followup_comment' %}
     <p class="govuk-!-font-size-16">
-      {{ params.value.option }}{{ " — " + params.value.details if params.value.details }}
+      {{ params.value.option }}{{ " — " + params.value.details if params.value.details and params.value.details != 'n/a' }}
     </p>
   {% endif %}
 
@@ -28,6 +28,8 @@
       {{ params.value }}
     </p>
   {% endif %}
+
+  {{ params.alerts | safe }}
 {% else %}
   {% if params.responded %}
     <span class="app-secondary-text-colour">

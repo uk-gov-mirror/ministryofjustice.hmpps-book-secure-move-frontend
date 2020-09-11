@@ -5,11 +5,13 @@ const {
   isTomorrow,
   isYesterday,
   differenceInYears,
+  formatDistanceToNow,
   parseISO,
   isValid: isValidDate,
   isSameMonth,
   isSameYear,
   isDate,
+  formatRelative,
 } = require('date-fns')
 const filesizejs = require('filesize')
 const { filter, kebabCase, startCase } = require('lodash')
@@ -246,6 +248,26 @@ function calculateAge(value) {
   return differenceInYears(new Date(), parsedDate)
 }
 
+function timeAgo(value) {
+  const parsedDate = parseISO(value)
+
+  if (!isValidDate(parsedDate)) {
+    return value
+  }
+
+  return formatDistanceToNow(parsedDate, { addSuffix: true })
+}
+
+function relativeTime(value) {
+  const parsedDate = parseISO(value)
+
+  if (!isValidDate(parsedDate)) {
+    return value
+  }
+
+  return formatRelative(parsedDate, new Date())
+}
+
 /**
  * Formats a time
  *
@@ -322,4 +344,6 @@ module.exports = {
   pluralize,
   oxfordJoin,
   filesize,
+  timeAgo,
+  relativeTime,
 }

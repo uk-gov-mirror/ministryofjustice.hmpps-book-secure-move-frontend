@@ -9,6 +9,22 @@
   – {{ SERVICE_NAME }}
 {% endblock %}
 
+
+
+{% block contentHeader %}
+  {% if options.prefilled and not errors.errorList.length %}
+    {{ appMessage({
+      allowDismiss: false,
+      classes: "app-message--info govuk-!-margin-bottom-6",
+      title: {
+        text: "Some answers on this page have been prefilled and need review."
+      }
+    }) }}
+  {% endif %}
+
+  {{ super() }}
+{% endblock %}
+
 {% block submitAction %}
   {{ super() }}
 

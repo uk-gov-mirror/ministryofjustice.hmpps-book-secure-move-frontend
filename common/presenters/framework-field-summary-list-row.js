@@ -5,7 +5,16 @@ const componentService = require('../services/component')
 
 function frameworkFieldToSummaryListRow(stepUrl) {
   return field => {
-    const { description, id, response, question, descendants, itemName } = field
+    console.log(field)
+    const {
+      alerts,
+      description,
+      id,
+      response,
+      question,
+      descendants,
+      itemName,
+    } = field
     const headerText = description || question
     const valueType = response.question?.response_type
 
@@ -48,6 +57,7 @@ function frameworkFieldToSummaryListRow(stepUrl) {
     }
 
     const responseHtml = componentService.getComponent('appFrameworkResponse', {
+      alerts,
       value: isEmpty(response.value) ? undefined : response.value,
       valueType,
       responded: response.responded === true,

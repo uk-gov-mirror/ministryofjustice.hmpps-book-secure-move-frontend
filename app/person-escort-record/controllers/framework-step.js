@@ -1,10 +1,47 @@
-const { isEmpty } = require('lodash')
+const { isEmpty, get, set } = require('lodash')
 
 const FormWizardController = require('../../../common/controllers/form-wizard')
 const fieldHelpers = require('../../../common/helpers/field')
 const frameworksHelpers = require('../../../common/helpers/frameworks')
 const permissionsControllers = require('../../../common/middleware/permissions')
 const responseService = require('../../../common/services/framework-response')
+const filters = require('../../../config/nunjucks/filters')
+
+const mockAlerts = require('./mock-alerts')
+
+function appendAlerts(fields, key, alerts, createdDate) {
+  if (!fields[key]) {
+    return
+  }
+
+  fields[key].hint = {
+    html:
+      fields[key].hint.html +
+      `
+      <h4 class="govuk-heading-s govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-margin-bottom-1">
+        Active NOMIS information to be included
+      </h4>
+      <div class="govuk-caption-s govuk-!-margin-top-0 govuk-!-margin-bottom-2 govuk-!-font-size-16">
+        Last updated ${filters.relativeTime(createdDate)}
+      </div>
+
+      <div class="govuk-!-margin-bottom-4">
+        ${alerts}
+      </div>
+    `,
+    //   `
+    //   <h4 class="govuk-heading-s govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-margin-bottom-2">
+    //     Active NOMIS information to be included (updated ${filters.relativeTime(
+    //       createdDate
+    //     )})
+    //   </h4>
+
+    //   <div class="govuk-!-margin-bottom-4">
+    //     ${alerts}
+    //   </div>
+    // `,
+  }
+}
 
 class FrameworkStepController extends FormWizardController {
   middlewareChecks() {
@@ -32,8 +69,34 @@ class FrameworkStepController extends FormWizardController {
     // the nested conditional fields don't exist and won't get populated
     // TODO: Find a more efficient way to solve this ordering issue
     this.use(this.setupConditionalFields)
+    this.use(this.setNomisAlerts)
     super.middlewareSetup()
     this.use(this.setButtonText)
+    this.use(this.setConditionalValidation)
+  }
+
+  setNomisAlerts(req, res, next) {
+    mockAlerts.forEach(alert => {
+      appendAlerts(
+        req.form.options.fields,
+        alert.key,
+        alert.html,
+        req.personEscortRecord.created_at
+      )
+    })
+
+    next()
+  }
+
+  setConditionalValidation(req, res, next) {
+    const fields = req.form.options.fields
+    mockAlerts.forEach(alert => {
+      const label = get(fields, `${alert.key}--yes.label.text`, '')
+      set(fields, `${alert.key}--yes.validate`, [])
+      set(fields, `${alert.key}--yes.label.text`, label + ' (optional)')
+    })
+
+    next()
   }
 
   setInitialValues(req, res, next) {
@@ -41,6 +104,49 @@ class FrameworkStepController extends FormWizardController {
     const responses = req.personEscortRecord.responses
     const savedValues = responses
       .filter(response => fields[response.question?.key])
+      // TODO: TEMP for prototyping
+      .map(response => {
+        const field = fields[response.question?.key]
+
+        if (
+          isEmpty(response.question.last_response?.value) ||
+          !isEmpty(response.value)
+        ) {
+          if (response.value?.details === 'n/a') {
+            response.value.details = ''
+          }
+
+          return response
+        }
+
+        req.form.options.prefilled = true
+
+        const hint = field.hint?.html || ''
+
+        field.formGroup = {
+          classes: ' govuk-form-group--message',
+        }
+
+        if (!hint.includes('This answer')) {
+          const relativeTime = filters
+            .timeAgo(
+              response.question.last_response?.person_escort_record
+                ?.confirmed_at
+            )
+            .replace('about ', '')
+
+          field.hint = {
+            html:
+              hint +
+              `<span class="govuk-prefill-message">This answer is from the last PER confirmed ${relativeTime}</span>`,
+          }
+        }
+
+        return {
+          ...response,
+          value: response.question.last_response?.value,
+        }
+      })
       .filter(response => !isEmpty(response.value))
       .reduce(frameworksHelpers.reduceResponsesToFormValues, {})
 
