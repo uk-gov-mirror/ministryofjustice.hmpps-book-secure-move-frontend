@@ -3,10 +3,10 @@ const heldSeparatelyAlerts = `<div class="app-panel govuk-!-margin-bottom-0" id=
   <div class="app-meta-list__item ">
     <dd class="app-meta-list__value">
       <div>
-        <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Risk to certain ethnic groups</h4>
-        <span class="">Arrested for verbally abusing ethnic groups</span>
+        <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Risk to lesbian/gay/bisexual people</h4>
+        <span class="">Charged with verbal assault to lesbian/gay/bisexual people</span>
         <div class="app-secondary-text-colour govuk-!-margin-top-2 govuk-!-font-size-14">
-          Alert created on Tuesday 16 Jun 2020
+          Alert created on Friday 27 Apr 2018
         </div>
       </div>
     </dd>
@@ -14,10 +14,10 @@ const heldSeparatelyAlerts = `<div class="app-panel govuk-!-margin-bottom-0" id=
   <div class="app-meta-list__item ">
     <dd class="app-meta-list__value">
       <div>
-        <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Risk to lesbian/gay/bisexual people</h4>
-        <span class="">Charged with verbal assault to lesbian/gay/bisexual people</span>
+        <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Risk to certain ethnic groups</h4>
+        <span class="">Arrested for verbally abusing ethnic groups</span>
         <div class="app-secondary-text-colour govuk-!-margin-top-2 govuk-!-font-size-14">
-          Alert created on Friday 27 Apr 2018
+          Alert created on Tuesday 16 Jun 2020
         </div>
       </div>
     </dd>
