@@ -74,6 +74,18 @@ module.exports = [
   </div>`,
   },
   {
+    key: 'high-public-interest',
+    html: undefined,
+  },
+  {
+    key: 'gang-member-or-organised-crime',
+    html: undefined,
+  },
+  {
+    key: 'stalker-harasser-or-intimidator',
+    html: undefined,
+  },
+  {
     key: 'held-separately',
     html: heldSeparatelyAlerts,
   },

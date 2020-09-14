@@ -14,6 +14,22 @@ function appendAlerts(fields, key, alerts, createdDate) {
     return
   }
 
+  if (!alerts) {
+    fields[key].hint = {
+      html:
+        (fields[key].hint?.html || '') +
+        `
+        <div class="app-message app-message--muted govuk-!-margin-top-2 govuk-!-margin-bottom-4" data-module="app-message" tabindex="-1" role="alert" aria-labelledby="app-message__heading">
+            <div class="app-message__content govuk-!-font-size-16">
+              No active NOMIS information
+            </div>
+        </div>
+      `,
+    }
+
+    return
+  }
+
   fields[key].hint = {
     html:
       fields[key].hint.html +
