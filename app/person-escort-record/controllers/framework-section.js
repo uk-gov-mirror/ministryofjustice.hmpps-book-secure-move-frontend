@@ -11,13 +11,15 @@ function appendAlerts(fields, key, alerts, createdDate) {
     return
   }
 
-  fields[key].alerts = `
+  if (alerts) {
+    fields[key].alerts = `
     <h4 class="govuk-heading-s govuk-!-font-size-16 govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-margin-bottom-2">
       Active NOMIS information included
     </h4>
 
     ${alerts}
   `
+  }
 }
 
 class FrameworkSectionController extends FormWizardController {
