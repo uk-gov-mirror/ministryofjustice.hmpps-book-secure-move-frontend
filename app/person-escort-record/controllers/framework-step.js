@@ -135,6 +135,10 @@ class FrameworkStepController extends FormWizardController {
           return response
         }
 
+        if (response.question.last_response?.value?.details === 'n/a') {
+          response.question.last_response.value.details = ''
+        }
+
         req.form.options.prefilled = true
 
         const hint = field.hint?.html || ''
