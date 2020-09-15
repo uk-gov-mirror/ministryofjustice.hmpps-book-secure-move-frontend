@@ -158,7 +158,7 @@ class FrameworkStepController extends FormWizardController {
           field.hint = {
             html:
               hint +
-              `<span class="govuk-prefill-message">This answer is from the <a href="#">last PER</a> <span class="app-secondary-text-colour app-font-weight-normal govuk-!-font-size-16">confirmed ${actualDate}, ${relativeTime}</span></span>`,
+              `<span class="govuk-prefill-message">This answer is from the <a href="#">last PER</a> <span class="app-secondary-text-colour app-font-weight-normal govuk-!-font-size-16 govuk-!-display-block">Confirmed ${actualDate}, ${relativeTime}</span></span>`,
             // `<span class="govuk-prefill-message">This answer is from the <a href="#">last PER</a> confirmed on ${actualDate}, ${relativeTime}</span>`,
           }
         }
