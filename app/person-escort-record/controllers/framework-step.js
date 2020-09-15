@@ -148,17 +148,18 @@ class FrameworkStepController extends FormWizardController {
         }
 
         if (!hint.includes('This answer')) {
-          const relativeTime = filters
-            .timeAgo(
-              response.question.last_response?.person_escort_record
-                ?.confirmed_at
-            )
-            .replace('about ', '')
+          const datetime =
+            response.question.last_response?.person_escort_record?.confirmed_at
+          const relativeTime = filters.timeAgo(datetime).replace('about ', '')
+          const actualDate = filters.formatDate(datetime)
+
+          console.log(response.question.last_response)
 
           field.hint = {
             html:
               hint +
-              `<span class="govuk-prefill-message">This answer is from the last PER confirmed ${relativeTime}</span>`,
+              `<span class="govuk-prefill-message">This answer is from the <a href="#">last PER</a> <span class="app-secondary-text-colour app-font-weight-normal govuk-!-font-size-16">confirmed ${actualDate}, ${relativeTime}</span></span>`,
+            // `<span class="govuk-prefill-message">This answer is from the <a href="#">last PER</a> confirmed on ${actualDate}, ${relativeTime}</span>`,
           }
         }
 

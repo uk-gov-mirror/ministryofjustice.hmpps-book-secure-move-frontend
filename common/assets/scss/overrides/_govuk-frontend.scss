@@ -104,6 +104,13 @@
     margin-bottom: govuk-spacing(3);
     display: block;
     color: govuk-colour("blue");
+
+    a,
+    a:active,
+    a:hover,
+    a:visited {
+      color: govuk-colour("blue");
+    }
   }
 
   .govuk-prefill-message--black {
