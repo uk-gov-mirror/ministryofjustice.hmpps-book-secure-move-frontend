@@ -56,14 +56,14 @@ module.exports = [
 </div>`,
   },
   {
-    key: 'escape-risk',
+    key: 'gang-member-or-organised-crime',
     html: `<div class="app-panel govuk-!-margin-bottom-0" id="escape">
     <dl class="app-meta-list app-meta-list--divider govuk-!-font-size-16">
       <div class="app-meta-list__item ">
         <dd class="app-meta-list__value">
           <div>
-            <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Climber</h4>
-            <span class="">Took a climbing course</span>
+            <h4 class="govuk-!-margin-top-0 govuk-!-margin-bottom-2">Gang Member</h4>
+            <span class="">Was spotted with J-crew gang</span>
             <div class="app-secondary-text-colour govuk-!-margin-top-2 govuk-!-font-size-14">
               Alert created on Monday 8 Feb 2001
             </div>
@@ -78,7 +78,7 @@ module.exports = [
     html: undefined,
   },
   {
-    key: 'gang-member-or-organised-crime',
+    key: 'escape-risk',
     html: undefined,
   },
   {

@@ -32,7 +32,7 @@ function appendAlerts(fields, key, alerts, createdDate) {
 
   fields[key].hint = {
     html:
-      fields[key].hint.html +
+      (fields[key].hint?.html || '') +
       `
       <h4 class="govuk-heading-s govuk-!-margin-top-0 govuk-!-padding-top-0 govuk-!-margin-bottom-1">
         Active NOMIS information to be included
