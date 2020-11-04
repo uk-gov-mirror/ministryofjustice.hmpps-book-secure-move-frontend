@@ -10,6 +10,9 @@ function setFramework(req, res, next) {
     req.framework = frameworksService.getYouthRiskAssessment(
       req.youthRiskAssessment?.version
     )
+    req.youthRiskAssessmentFramework = frameworksService.getYouthRiskAssessment(
+      req.youthRiskAssessment?.version
+    )
 
     next()
   } catch (error) {

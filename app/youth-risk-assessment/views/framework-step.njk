@@ -1,0 +1,67 @@
+{% extends "form-wizard.njk" %}
+
+{% set mainClasses = "interruption-card" if options.stepType == 'interruption-card' %}
+
+{% block contentHeader %}
+  {% if syncFailures.length > 0 %}
+    {% set html %}
+      <p class="govuk-!-margin-bottom-3">
+        {{ t("youth-risk-assessment::sync_status.failed.message") }}
+      </p>
+
+      <ul>
+        {% for type in syncFailures %}
+          <li>
+            {{ t("youth-risk-assessment::sync_status.failed.resource_types." + type) }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endset %}
+
+    {{ appMessage({
+      allowDismiss: false,
+      classes: "app-message--warning govuk-!-margin-bottom-4",
+      title: {
+        text: t("youth-risk-assessment::sync_status.failed.title")
+      },
+      content: {
+        html: html
+      }
+    }) }}
+  {% endif %}
+
+  {% if hasPrefilledResponses %}
+    {{ appMessage({
+      allowDismiss: false,
+      classes: "govuk-!-margin-bottom-4",
+      title: {
+        text: t("youth-risk-assessment::prefilled_banner.title", {
+          date: prefilledSourceDate | formatDateWithRelativeDay + " at " + prefilledSourceDate | formatTime
+        })
+      }
+    }) }}
+  {% endif %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block pageTitle %}
+  {{ t(options.pageTitle) }}
+  – {{ t(frameworkSection) }}
+  – {{ t("youth-risk-assessment::page_title") }}
+  – {{ SERVICE_NAME }}
+{% endblock %}
+
+{% block submitAction %}
+  {{ super() }}
+
+  {% if options.stepType != 'interruption-card' %}
+    {{ govukButton({
+      text: t("actions::save_and_return_to_overview"),
+      name: "save_and_return_to_overview",
+      value: "1",
+      type: "submit",
+      classes: "govuk-button--secondary"
+    }) }}
+  {% endif %}
+{% endblock %}

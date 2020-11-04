@@ -8,7 +8,12 @@ const getUpdateLinks = require('./view/view.update.links')
 const getUpdateUrls = require('./view/view.update.urls')
 
 module.exports = function view(req, res) {
-  const { move, originalUrl, framework = {} } = req
+  const {
+    move,
+    originalUrl,
+    framework = {},
+    youthRiskAssessmentFramework = {},
+  } = req
   const {
     profile,
     status,
@@ -33,7 +38,36 @@ module.exports = function view(req, res) {
     person,
     assessment_answers: assessmentAnswers = [],
     person_escort_record: personEscortRecord,
+    youth_risk_assessment: youthRiskAssessment,
   } = profile || {}
+  /// ///////////
+  const youthRiskAssessmentIsCompleted =
+    !isEmpty(youthRiskAssessment) &&
+    !['not_started', 'in_progress'].includes(youthRiskAssessment?.status)
+  const youthRiskAssessmentIsConfirmed = ['confirmed'].includes(
+    youthRiskAssessment?.status
+  )
+  const youthRiskAssessmentUrl = `${originalUrl}/youth-risk-assessment`
+  const showYouthRiskAssessmentBanner =
+    !['proposed'].includes(move?.status) && move.profile?.id !== undefined
+  const canStartYouthRiskAssessment =
+    showYouthRiskAssessmentBanner &&
+    ['requested', 'booked'].includes(move?.status) &&
+    !youthRiskAssessment
+  const canConfirmYouthRiskAssessment =
+    showYouthRiskAssessmentBanner &&
+    youthRiskAssessmentIsCompleted &&
+    ['requested', 'booked'].includes(move?.status)
+  const youthRiskAssessmenttaskList = presenters.frameworkToTaskListComponent({
+    baseUrl: `${youthRiskAssessmentUrl}/`,
+    deepLinkToFirstStep: true,
+    frameworkSections: youthRiskAssessmentFramework.sections,
+    sectionProgress: youthRiskAssessment?.meta?.section_progress,
+  })
+  const youthRiskAssessmentTagList = presenters.frameworkFlagsToTagList(
+    youthRiskAssessment?.flags
+  )
+  /// ///////////
   const personEscortRecordIsEnabled =
     FEATURE_FLAGS.PERSON_ESCORT_RECORD &&
     req.canAccess('person_escort_record:view')
@@ -50,6 +84,7 @@ module.exports = function view(req, res) {
     move.profile?.id !== undefined
   const canStartPersonEscortRecord =
     showPersonEscortRecordBanner &&
+    youthRiskAssessmentIsConfirmed &&
     ['requested', 'booked'].includes(move?.status) &&
     !personEscortRecord
   const canConfirmPersonEscortRecord =
@@ -109,6 +144,17 @@ module.exports = function view(req, res) {
     canStartPersonEscortRecord,
     canConfirmPersonEscortRecord,
     personEscortRecordTagList,
+    // /////////////////
+    youthRiskAssessment,
+    youthRiskAssessmentIsCompleted,
+    youthRiskAssessmentIsConfirmed,
+    youthRiskAssessmentUrl,
+    youthRiskAssessmenttaskList,
+    showYouthRiskAssessmentBanner,
+    canStartYouthRiskAssessment,
+    canConfirmYouthRiskAssessment,
+    youthRiskAssessmentTagList,
+    // /////////////////
     assessmentSections,
     moveSummary: presenters.moveToMetaListComponent(move, updateActions),
     personalDetailsSummary: presenters.personToSummaryListComponent(person),

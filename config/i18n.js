@@ -25,6 +25,7 @@ i18next.use(Backend).init({
     'population',
     'statuses',
     'validation',
+    'youth-risk-assessment',
   ],
   defaultNS: 'default',
   backend: {

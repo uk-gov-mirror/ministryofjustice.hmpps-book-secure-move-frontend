@@ -1,0 +1,67 @@
+{
+  "page_title": "Youth risk assessment",
+  "page_title_with_name": "Youth risk assessment for {{name}}",
+  "heading": "Youth risk assessment",
+  "heading_with_name": "Youth risk assessment for",
+  "section_overview": "{{section}} overview",
+  "locked": "A youth risk assessment cannot be updated once it has been confirmed or once the move has started.",
+  "left_custody": "A youth risk assessment cannot be confirmed once the move has started.",
+  "statuses": {
+    "not_started": "Not started",
+    "in_progress": "In progress",
+    "completed": "Completed"
+  },
+  "sync_status": {
+    "failed": {
+      "title": "Some NOMIS information could not be included",
+      "message": "The following information could not be included. Check NOMIS for the most up to date information:",
+      "resource_types": {
+        "alerts": "alerts",
+        "personal_care_needs": "personal care needs",
+        "reasonable_adjustments": "reasonable adjustments"
+      }
+    }
+  },
+  "prefilled_banner": {
+    "title": "Some answers on this page need to be reviewed. They are from the last Youth risk assessment confirmed on {{date}}."
+  },
+  "prefilled_message": "This answer needs to be reviewed",
+  "journeys": {
+    "confirm": {
+      "heading":"Confirm and complete this youth risk assessment",
+      "content":"Once you are confident the information below is correct and won’t change, provide your confirmation that this record is correct in order to complete it.\n\n!!! warning\nOnce you confirm and complete the Youth risk assessment you will no longer be able to update the information.\n!!!"
+    }
+  },
+  "nomis_mappings": {
+    "information_to_be_included": "Active NOMIS information to be included",
+    "information_included": "Information included from NOMIS"
+  },
+  "sections": {
+    "handover": {
+      "heading": "Escort handover details",
+      "subheading": "Handover",
+      "fields": {
+        "dispatching_officer": "Dispatching officer",
+        "receiving_officer": "Receiving officer",
+        "time": "Time",
+        "date": "Date",
+        "from_location": "Starting location",
+        "to": "To",
+        "phone": "Phone",
+        "name": "Name",
+        "id": "ID",
+        "signature": "Signature"
+      }
+    },
+    "property_handover": {
+      "heading": "Property and cash handover"
+    }
+  },
+  "flags": {
+    "incomplete": "Warnings will display once a Youth risk assessment has been completed",
+    "section_incomplete": "Warnings will display once this section has been completed",
+    "empty": "No {{name}} warnings. View <a href=\"{{url}}\">all answers</a>.",
+    "information_provided_when_requested": "View information provided when move was requested"
+  },
+  "feedback_prompt": "This is a new feature — <a href=\"{{url}}\">give us your feedback</a> to help us improve it"
+}

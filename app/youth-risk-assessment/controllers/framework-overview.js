@@ -11,7 +11,7 @@ function frameworkOverview(req, res) {
     sectionProgress: youthRiskAssessment?.meta?.section_progress,
   })
 
-  res.render('person-escort-record/views/framework-overview', {
+  res.render('youth-risk-assessment/views/framework-overview', {
     moveId,
     taskList,
     fullname,

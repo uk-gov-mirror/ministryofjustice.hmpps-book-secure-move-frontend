@@ -32,7 +32,7 @@ function defineFormWizard(req, res, next) {
     // Unique for each Person Escort Record
     name: `youth-risk-assessment-${youthRiskAssessmentId}`,
     template: 'framework-step',
-    templatePath: 'person-escort-record/views/',
+    templatePath: 'youth-risk-assessment/views/',
     defaultFormatters: ['trim', 'singlespaces', 'apostrophes', 'quotes'],
   }
 

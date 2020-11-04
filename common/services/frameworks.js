@@ -279,6 +279,13 @@ const frameworksService = {
       version,
     })
   },
+
+  getYouthRiskAssessment(version = frameworksConfig.CURRENT_VERSION) {
+    return frameworksService.getFramework({
+      framework: 'youth-risk-assessment',
+      version,
+    })
+  },
 }
 
 module.exports = frameworksService

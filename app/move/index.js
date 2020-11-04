@@ -11,6 +11,9 @@ const { protectRoute } = require('../../common/middleware/permissions')
 const personEscortRecordApp = require('../person-escort-record')
 const { setFramework } = require('../person-escort-record/middleware')
 const youthRiskAssessmentApp = require('../youth-risk-assessment')
+const {
+  setFramework: setYouthFramework,
+} = require('../youth-risk-assessment/middleware')
 
 const { assign, confirmation, create, update, view } = require('./controllers')
 const {
@@ -97,6 +100,7 @@ router.use(
   `/:moveId(${uuidRegex})`,
   setPersonEscortRecord,
   setYouthRiskAssessment,
+  setYouthFramework,
   setFramework,
   moveRouter
 )

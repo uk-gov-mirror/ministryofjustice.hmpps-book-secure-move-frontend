@@ -93,6 +93,69 @@
     }) }}
   {% endif %}
 
+  {% if canStartYouthRiskAssessment %}
+    {% set html %}
+      <p>{{ t("messages::youth_risk_assessment_pending.content") }}</p>
+
+      {{ govukButton({
+        href: youthRiskAssessmentUrl + "/new",
+        text: t("actions::start_youth_risk_assessment")
+      }) }}
+    {% endset %}
+
+    {{ appMessage({
+      allowDismiss: false,
+      classes: "app-message--instruction",
+      title: {
+        text: t("messages::youth_risk_assessment_pending.heading")
+      },
+      content: {
+        html: html
+      }
+    }) }}
+  {% endif %}
+
+  {% if showYouthRiskAssessmentBanner and youthRiskAssessment and not youthRiskAssessmentIsConfirmed %}
+    {% set html %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          {{ appTaskList(youthRiskAssessmenttaskList) }}
+
+          {% if youthRiskAssessmentIsCompleted %}
+            <p>
+              {{ t("messages::youth_risk_assessment_complete.content") }}
+            </p>
+
+            {{ govukButton({
+              href: youthRiskAssessmentUrl + "/confirm",
+              text: t("actions::provide_confirmation"),
+              disabled: not canConfirmYouthRiskAssessment
+            }) }}
+
+            {% if not canConfirmYouthRiskAssessment %}
+              {{ govukWarningText({
+                text: t("person-escort-record::left_custody"),
+                classes: "govuk-!-padding-top-0 govuk-!-margin-top-5",
+                iconFallbackText: "Warning"
+              }) }}
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endset %}
+
+    {{ appMessage({
+      allowDismiss: false,
+      classes: "app-message--instruction govuk-!-padding-right-0",
+      title: {
+        text: t("messages::youth_risk_assessment_complete.heading") if youthRiskAssessmentIsCompleted else t("messages::youth_risk_assessment_incomplete.heading")
+      },
+      content: {
+        html: html
+      }
+    }) }}
+  {% endif %}
+
   {% if canStartPersonEscortRecord %}
     {% set html %}
       <p>{{ t("messages::person_escort_record_pending.content") }}</p>

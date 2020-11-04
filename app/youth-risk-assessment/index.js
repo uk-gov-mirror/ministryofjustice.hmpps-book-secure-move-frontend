@@ -4,6 +4,7 @@ const router = require('express').Router({ mergeParams: true })
 // Local dependencies
 const { uuidRegex } = require('../../common/helpers/url')
 
+const confirmApp = require('./app/confirm')
 const newApp = require('./app/new')
 const { frameworkOverviewController } = require('./controllers')
 const {
@@ -23,6 +24,7 @@ router.use(setAssessment)
 router.use(setFramework)
 
 // Define sub-apps
+router.use(confirmApp.mountpath, confirmApp.router)
 
 // Define routes
 router.get('/', frameworkOverviewController)

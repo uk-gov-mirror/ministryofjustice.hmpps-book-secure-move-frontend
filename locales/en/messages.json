@@ -35,6 +35,21 @@
     "heading": "Person Escort Record has been confirmed",
     "content": "All information in this Person Escort Record was confirmed at <strong>{{time}}</strong> on <strong>{{date}}</strong>."
   },
+  "youth_risk_assessment_pending": {
+    "heading": "Start youth risk assessment",
+    "content": ""
+  },
+  "youth_risk_assessment_incomplete": {
+    "heading": "Incomplete youth risk assessment"
+  },
+  "youth_risk_assessment_complete": {
+    "heading": "Youth risk assessment has been completed",
+    "content": "Once you are confident the information provided is correct and won’t change, provide your confirmation that this assessment is correct in order to print it."
+  },
+  "youth_risk_assessment_confirmed": {
+    "heading": "Youth risk assessment has been confirmed",
+    "content": "All information in this youth risk assessment was confirmed at <strong>{{time}}</strong> on <strong>{{date}}</strong>."
+  },
   "cancel_allocation_move": {
     "content": "$t(moves::allocation_relationship). It can only be cancelled from the allocations page by a member of the Population Management Unit (PMU)."
   },
