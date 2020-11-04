@@ -70,6 +70,14 @@ module.exports = {
         'profile.person_escort_record.responses.nomis_mappings',
         'profile.person_escort_record.flags',
         'profile.person_escort_record.prefill_source',
+        // 'profile.youth_risk_assessment',
+        // 'profile.youth_risk_assessment.framework',
+        // 'profile.youth_risk_assessment.responses',
+        // 'profile.youth_risk_assessment.responses.question',
+        // 'profile.youth_risk_assessment.responses.question.descendants.**',
+        // 'profile.youth_risk_assessment.responses.nomis_mappings',
+        // 'profile.youth_risk_assessment.flags',
+        // 'profile.youth_risk_assessment.prefill_source',
         'profile.person',
         'profile.person.ethnicity',
         'profile.person.gender',
@@ -125,6 +133,10 @@ module.exports = {
       person_escort_record: {
         jsonApi: 'hasOne',
         type: 'person_escort_records',
+      },
+      youth_risk_assessment: {
+        jsonApi: 'hasOne',
+        type: 'youth_risk_assessments',
       },
     },
     options: {
@@ -389,6 +401,52 @@ module.exports = {
     },
   },
   person_escort_record: {
+    fields: {
+      status: '',
+      created_at: '',
+      confirmed_at: '',
+      version: '',
+      nomis_sync_status: '',
+      move: {
+        jsonApi: 'hasOne',
+        type: 'moves',
+      },
+      profile: {
+        jsonApi: 'hasOne',
+        type: 'profiles',
+      },
+      framework: {
+        jsonApi: 'hasOne',
+        type: 'frameworks',
+      },
+      responses: {
+        jsonApi: 'hasMany',
+        type: 'framework_responses',
+      },
+      flags: {
+        jsonApi: 'hasMany',
+        type: 'framework_flags',
+      },
+      prefill_source: {
+        jsonApi: 'hasOne',
+        type: 'person_escort_records',
+      },
+    },
+    options: {
+      defaultInclude: [
+        'profile',
+        'profile.person',
+        'framework',
+        'responses',
+        'responses.question',
+        'responses.question.descendants.**',
+        'responses.nomis_mappings',
+        'flags',
+        'prefill_source',
+      ],
+    },
+  },
+  youth_risk_assessment: {
     fields: {
       status: '',
       created_at: '',

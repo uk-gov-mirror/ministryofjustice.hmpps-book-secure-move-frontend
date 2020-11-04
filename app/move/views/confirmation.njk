@@ -92,6 +92,13 @@
         }) }}
       {% endif %}
 
+      {% if move.from_location.location_type == 'secure_childrens_home' or move.from_location.location_type == 'secure_training_centre' %}
+        {{ govukButton({
+          href: "/move/" + move.id + "/youth-risk-assessment/new",
+          text: "Complete youth risk assessment"
+        }) }}
+      {% endif %}
+
       <ul class="govuk-list">
         {% if unassignedMoveId %}
           <li>

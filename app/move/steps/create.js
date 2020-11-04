@@ -245,6 +245,16 @@ module.exports = {
         value: 'prison',
         next: 'release-status',
       },
+      {
+        field: 'from_location_type',
+        value: 'secure_childrens_home',
+        next: 'save',
+      },
+      {
+        field: 'from_location_type',
+        value: 'secure_training_centre',
+        next: 'save',
+      },
       'risk-information',
     ],
     fields: ['solicitor', 'interpreter', 'other_court'],

@@ -10,6 +10,7 @@ const { uuidRegex } = require('../../common/helpers/url')
 const { protectRoute } = require('../../common/middleware/permissions')
 const personEscortRecordApp = require('../person-escort-record')
 const { setFramework } = require('../person-escort-record/middleware')
+const youthRiskAssessmentApp = require('../youth-risk-assessment')
 
 const { assign, confirmation, create, update, view } = require('./controllers')
 const {
@@ -21,6 +22,7 @@ const {
 } = require('./fields')
 const {
   setMove,
+  setYouthRiskAssessment,
   setPersonEscortRecord,
   setAllocation,
 } = require('./middleware')
@@ -94,6 +96,7 @@ router.use(
 router.use(
   `/:moveId(${uuidRegex})`,
   setPersonEscortRecord,
+  setYouthRiskAssessment,
   setFramework,
   moveRouter
 )
@@ -106,6 +109,7 @@ moveRouter.get(
   confirmation
 )
 moveRouter.use(personEscortRecordApp.mountpath, personEscortRecordApp.router)
+moveRouter.use(youthRiskAssessmentApp.mountpath, youthRiskAssessmentApp.router)
 moveRouter.use(
   '/cancel',
   protectRoute(['move:cancel', 'move:cancel:proposed']),
