@@ -46,6 +46,7 @@
   "start_assessment": "Start $t({{context}})",
   "print_assessment": "Print $t({{context}})",
   "view_assessment": "View $t({{context}})",
+  "complete_assessment": "Complete $t({{context}}) (dev only)",
   "provide_confirmation": "Provide confirmation",
   "provide_confirmation_person_escort_record": "Record handover",
   "confirm_handover": "Confirm handover",

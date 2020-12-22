@@ -8,10 +8,15 @@ const routes = {
 }
 
 // Local dependencies
-const { updatePermissions, renderPermissions } = require('./controllers')
+const {
+  updatePermissions,
+  renderPermissions,
+  createPER,
+} = require('./controllers')
 
 // Define routes
 router.route(routes.permissions).get(renderPermissions).post(updatePermissions)
+router.route('/complete/:type/:assessmentId').get(createPER)
 
 // Export
 module.exports = {

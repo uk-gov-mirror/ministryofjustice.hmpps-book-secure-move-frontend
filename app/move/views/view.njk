@@ -245,6 +245,26 @@
         }) }}
       </a>
     </p>
+
+    {% if ENABLE_DEVELOPMENT_TOOLS and youthRiskAssessment.status !== "confirmed" %}
+      <p class="govuk-!-margin-bottom-2">
+        <a href="/tools/complete/youth-risk-assessment/{{ youthRiskAssessment.id }}">
+          {{ t("actions::complete_assessment", {
+            context: "youth_risk_assessment"
+          }) }}
+        </a>
+      </p>
+    {% endif %}
+  {% endif %}
+
+  {% if ENABLE_DEVELOPMENT_TOOLS and personEscortRecord and personEscortRecord.status !== "confirmed" %}
+    <p class="govuk-!-margin-bottom-2">
+      <a href="/tools/complete/person-escort-record/{{ personEscortRecord.id }}">
+        {{ t("actions::complete_assessment", {
+          context: "person_escort_record"
+        }) }}
+      </a>
+    </p>
   {% endif %}
 
   {% if canCancelMove %}

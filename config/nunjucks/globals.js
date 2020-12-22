@@ -47,6 +47,7 @@ try {
 
 module.exports = {
   GA_ID: ANALYTICS?.GA_ID,
+  ENABLE_DEVELOPMENT_TOOLS,
   FOOTER_ITEMS: footerItems.filter(item => item.href),
   PERSON_ESCORT_RECORD_FEEDBACK_URL,
   SUPPORT_EMAIL,
