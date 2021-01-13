@@ -32,12 +32,6 @@ module.exports = function assessmentToUnconfirmedBanner({
     canAccess(`${context}:confirm`)
   ) {
     content += `
-      <p>
-        ${i18n.t(`messages::assessment.${assessment.status}.content`, {
-          context,
-        })}
-      </p>
-
       ${componentService.getComponent('govukButton', {
         href: `${baseUrl}/confirm`,
         text: i18n.t('actions::provide_confirmation'),

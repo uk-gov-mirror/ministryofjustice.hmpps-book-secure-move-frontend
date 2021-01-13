@@ -1,8 +1,14 @@
 const { get } = require('lodash')
 
+const setMoveWithSummary = require('../../middleware/set-move-with-summary')
 const FormWizardController = require('../form-wizard')
 
 class ConfirmAssessmentController extends FormWizardController {
+  middlewareLocals() {
+    this.use(setMoveWithSummary)
+    super.middlewareLocals()
+  }
+
   middlewareChecks() {
     this.use(this.checkStatus)
     super.middlewareChecks()
@@ -47,6 +53,11 @@ class ConfirmAssessmentController extends FormWizardController {
   successHandler(req, res) {
     req.journeyModel.reset()
     req.sessionModel.reset()
+
+    req.flash('success', {
+      title: 'Handover recorded',
+      content: `The handover for <strong>${req.move.profile.person._fullname}</strong> has been recorded.`,
+    })
 
     res.redirect(`/move/${req.move.id}`)
   }

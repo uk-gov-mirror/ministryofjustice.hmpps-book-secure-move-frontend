@@ -10,6 +10,13 @@ const steps = require('./steps')
 
 // Define shared middleware
 router.use(protectRoute('person_escort_record:confirm'))
+router.use((req, res, next) => {
+  res.breadcrumb({
+    text: 'Record handover',
+    href: '',
+  })
+  next()
+})
 
 // Define routes
 router.use(wizard(steps, fields, config, 'assessment.id'))

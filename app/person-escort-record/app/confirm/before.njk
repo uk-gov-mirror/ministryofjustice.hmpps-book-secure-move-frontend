@@ -1,0 +1,15 @@
+{% extends "form-wizard.njk" %}
+
+{% block formActions %}
+  {{ super() }}
+
+  <p>
+    <a href="/move/{{ move.id }}/person-escort-record">
+      Review or change Person Escort Record
+    </a>
+  </p>
+{% endblock %}
+
+{% block contentSidebar %}
+  {% include "includes/move-summary.njk" %}
+{% endblock %}

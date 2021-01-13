@@ -44,6 +44,16 @@
         }) }}
       {% endif %}
 
+      <p>
+        {{ appTag({
+          text: "Version 2",
+          classes: ""
+        }) }}
+        <span class="govuk-!-font-size-16">
+          Last updated at {{ personEscortRecord.created_at | formatDateWithTimeAndDay }}
+        </span>
+      </p>
+
       {% if hasSelfHarmWarning %}
         {% set html %}
           {{ govukWarningText({

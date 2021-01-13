@@ -23,7 +23,7 @@ module.exports = function assessmentToConfirmedBanner({
         ${i18n.t('actions::print_assessment', {
           context,
         })}
-      </a>
+      </a> (Version 2)
     </p>
   `
 

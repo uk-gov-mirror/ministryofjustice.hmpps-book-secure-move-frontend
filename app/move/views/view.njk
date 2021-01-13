@@ -100,22 +100,41 @@
 
 {% block contentHeader %}
   <header class="govuk-!-margin-bottom-8">
-    {% if not messageTitle and move.status != "proposed" %}
-      <div class="govuk-!-margin-bottom-2">
-        {{ mojBadge({
-          text: t("statuses::" + move.status)
-        }) }}
-      </div>
-    {% endif %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% if not messageTitle and move.status != "proposed" %}
+          <div class="govuk-!-margin-bottom-2">
+            {{ mojBadge({
+              text: t("statuses::" + move.status)
+            }) }}
+          </div>
+        {% endif %}
 
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
-      {{ name }}
-    </h1>
-    <span class="govuk-caption-xl">
-      {{ t("moves::move_reference", {
-        reference: move.reference
-      }) }}
-    </span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">
+          {{ name }}
+        </h1>
+        <span class="govuk-caption-xl">
+          {{ t("moves::move_reference", {
+            reference: move.reference
+          }) }}
+        </span>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        {% if personEscortRecordIsCompleted %}
+          <p class="govuk-!-font-size-16">
+            <a href="{{CANONICAL_URL}}/person-escort-record/print" class="app-icon app-icon--print">
+              Print PER
+              {% if personEscortRecord.status === "confirmed" %}
+              (Version 2)
+              {% elif personEscortRecordIsCompleted %}
+              (Version 1)
+              {% endif %}
+            </a>
+          </p>
+        {% endif %}
+      </div>
+    </div>
 
     <div class="govuk-!-margin-top-2" data-tag-list-source="person-escort-record">
       {% if not personEscortRecordIsCompleted %}
@@ -192,6 +211,7 @@
 {% endmacro %}
 
 {% block contentMain %}
+  {{ tabs(urls, 'view') }}
   {% if move.profile %}
     <div class="govuk-!-margin-bottom-9">
       <section class="app-!-position-relative">

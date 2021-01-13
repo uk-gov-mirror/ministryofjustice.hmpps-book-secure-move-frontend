@@ -43,8 +43,8 @@
       "uneditable": "A $t({{context}}) cannot be confirmed once the move has started."
     },
     "confirmed": {
-      "heading": "$t({{context}}) has been confirmed",
-      "content": "All information in this $t({{context}}) was confirmed at <strong>{{date}}</strong>."
+      "heading": "Person handed over // Handover completed // Handover recorded",
+      "content": "This person was handed over to <strong>GEOAmey</strong> at <strong>{{date}}</strong>."
     }
   },
   "cancel_allocation_move": {

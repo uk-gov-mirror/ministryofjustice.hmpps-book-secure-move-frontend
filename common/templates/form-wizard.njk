@@ -89,7 +89,7 @@
       {% block submitAction %}
         {{ govukButton({
           text: t(options.buttonText or "actions::continue"),
-          classes: options.buttonClasses,
+          classes: options.buttonClasses + " govuk-!-margin-bottom-3",
           preventDoubleClick: true,
           type: "submit"
         }) }}

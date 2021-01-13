@@ -124,6 +124,7 @@ function printRecord(req, res) {
     propertyItemName,
     sealNumberDescription,
     requiresMedicationDuringTransport,
+    personEscortRecord,
     personalDetailsSummary,
     personEscortRecordSections,
     personEscortRecordTagList,

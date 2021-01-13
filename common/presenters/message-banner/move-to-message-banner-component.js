@@ -28,7 +28,8 @@ function moveToMessageBannerComponent({ move = {}, moveUrl, canAccess } = {}) {
   }
 
   if (assessment?.status === 'confirmed') {
-    return assessmentToConfirmedBanner({ assessment, baseUrl, context })
+    return undefined
+    // return assessmentToConfirmedBanner({ assessment, baseUrl, context })
   }
 
   if (assessment?.status !== 'confirmed') {
