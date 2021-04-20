@@ -99,6 +99,21 @@
 {% endblock %}
 
 {% block contentHeader %}
+
+  <form action="/tools/move/{{move.id}}/update-status">
+    <label for="action">Action to perform</label>
+    <select name="action">
+      <option value="">-- Choose action --</option>
+      <option value="accept">Accept</option>
+      <option value="start">Start</option>
+      <option value="redirect">Redirect</option>
+      <option value="redirect">Lockout</option>
+      <option value="complete">Complete</option>
+    </select>
+
+    <input type="submit" value="Submit">
+  </form>
+
   <header class="govuk-!-margin-bottom-8">
     {% if not messageTitle and move.status != "proposed" %}
       <div class="govuk-!-margin-bottom-2">

@@ -335,6 +335,43 @@ class MoveService extends BaseService {
       })
   }
 
+  accept(id) {
+    if (!id) {
+      return Promise.reject(new Error(noMoveIdMessage))
+    }
+
+    const timestamp = dateFunctions.formatISO(new Date())
+
+    return this.apiClient.one('move', id).all('accept').post({
+      timestamp,
+    })
+  }
+
+  complete(id, { notes } = {}) {
+    if (!id) {
+      return Promise.reject(new Error(noMoveIdMessage))
+    }
+
+    const timestamp = dateFunctions.formatISO(new Date())
+
+    return this.apiClient.one('move', id).all('complete').post({
+      timestamp,
+      notes,
+    })
+  }
+
+  start(id) {
+    if (!id) {
+      return Promise.reject(new Error(noMoveIdMessage))
+    }
+
+    const timestamp = dateFunctions.formatISO(new Date())
+
+    return this.apiClient.one('move', id).all('start').post({
+      timestamp,
+    })
+  }
+
   unassign(id) {
     return this.update({
       id,

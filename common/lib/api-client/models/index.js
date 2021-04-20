@@ -1,9 +1,11 @@
+const accept = require('./accept')
 const allocation = require('./allocation')
 const allocationComplexCase = require('./allocation-complex-case')
 const approve = require('./approve')
 const assessmentQuestion = require('./assessment-question')
 const cancel = require('./cancel')
 const category = require('./category')
+const complete = require('./complete')
 const courtCase = require('./court-case')
 const courtHearing = require('./court-hearing')
 const document = require('./document')
@@ -19,6 +21,7 @@ const gender = require('./gender')
 const image = require('./image')
 const journey = require('./journey')
 const location = require('./location')
+const lockout = require('./lockout')
 const move = require('./move')
 const person = require('./person')
 const personEscortRecord = require('./person-escort-record')
@@ -28,17 +31,20 @@ const profile = require('./profile')
 const redirect = require('./redirect')
 const region = require('./region')
 const reject = require('./reject')
+const start = require('./start')
 const supplier = require('./supplier')
 const timetableEntry = require('./timetable-entry')
 const youthRiskAssessment = require('./youth-risk-assessment')
 
 module.exports = {
+  accept,
   allocation,
   allocation_complex_case: allocationComplexCase,
   approve,
   assessment_question: assessmentQuestion,
   cancel,
   category,
+  complete,
   court_case: courtCase,
   court_hearing: courtHearing,
   document,
@@ -54,6 +60,7 @@ module.exports = {
   image,
   journey,
   location,
+  lockout,
   move,
   person,
   person_escort_record: personEscortRecord,
@@ -63,6 +70,7 @@ module.exports = {
   redirect,
   region,
   reject,
+  start,
   supplier,
   timetable_entry: timetableEntry,
   youth_risk_assessment: youthRiskAssessment,
