@@ -287,7 +287,7 @@
     "finepack": "^2.12.20",
     "git-authors-cli": "1.0.53",
     "glob": "8.1.0",
-    "husky": "8.0.3",
+    "husky": "9.1.7",
     "image-minimizer-webpack-plugin": "5.0.0",
     "lint-staged": "17.3.0",
     "mini-css-extract-plugin": "2.10.2",
