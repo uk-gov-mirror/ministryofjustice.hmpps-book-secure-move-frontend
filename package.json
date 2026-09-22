@@ -192,7 +192,7 @@
     "debug": "4.4.3",
     "devour-client": "3.2.0",
     "dotenv": "17.4.2",
-    "dropzone": "5.9.3",
+    "dropzone": "6.3.1",
     "express": "4.22.2",
     "express-session": "1.19.0",
     "filesize": "11.0.23",
