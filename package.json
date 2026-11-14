@@ -239,7 +239,7 @@
     "stream-mock": "2.0.5",
     "timeago.js": "4.0.2",
     "user-time": "2.0.1",
-    "uuid": "14.0.1",
+    "uuid": "14.0.3",
     "winston": "3.19.0",
     "yargs": "18.1.0"
   },
@@ -409,7 +409,7 @@
     "sharp": "$sharp",
     "tmp": "0.2.7",
     "underscore": "^1.13.6",
-    "uuid": "14.0.1",
+    "uuid": "14.0.3",
     "handlebars": "4.7.10"
   }
 }
