@@ -312,7 +312,7 @@
     "standard-version": "9.5.0",
     "svgo": "4.1.0",
     "terser-webpack-plugin": "5.6.1",
-    "testcafe": "3.7.6",
+    "testcafe": "3.7.7",
     "testcafe-browser-provider-browserstack": "^1.15.3",
     "testcafe-reporter-xunit": "2.2.3",
     "timezone-mock": "1.4.3",
